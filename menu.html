@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Menu | Sufra Yemeni Fine Dining</title>
+    <meta name="description" content="Explore the authentic menu of Sufra Yemeni Cuisine in Lombard, IL. Discover tender Lamb Hanith, sizzling Lamb Fahsa, smoked Chicken Mandi, and tandoor-baked Mulawah bread.">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo" id="header-logo-link">
+                <img src="assets/logo_white.png" alt="Sufra Logo">
+            </a>
+            
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link" id="nav-home">Home</a></li>
+                    <li><a href="about.html" class="nav-link" id="nav-about">About Us</a></li>
+                    <li><a href="menu.html" class="nav-link active" id="nav-menu">Menu</a></li>
+                    <li><a href="catering.html" class="nav-link" id="nav-catering">Catering</a></li>
+                    <li><a href="contact.html" class="nav-link" id="nav-contact">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <div class="nav-actions">
+                <a href="https://www.toasttab.com/sufra-411-east-roosevelt-road" target="_blank" class="btn btn-primary" style="padding: 10px 20px; font-size: 0.8rem;" id="nav-cta-order">Order Online</a>
+                <button class="mobile-nav-toggle" aria-label="Toggle Navigation" id="mobile-toggle-btn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Subpage Hero Section -->
+    <section class="signature-section" style="padding: 100px 0 60px 0; background-image: url('assets/hero_bg.png'); height: 280px; min-height: 280px;">
+        <div class="signature-overlay" style="background-color: rgba(6, 25, 14, 0.85);"></div>
+        <div class="container" style="position: relative; z-index: 2; text-align: center; padding-top: 40px;">
+            <h1 style="font-size: 3rem; color: var(--white); margin-bottom: 10px;">Our Menu</h1>
+            <p style="color: var(--accent-gold); font-size: 1rem; letter-spacing: 2px; text-transform: uppercase;">A Culinary Journey Through Ancient Yemen</p>
+        </div>
+    </section>
+
+    <!-- Menu Overview & Filter Tabs -->
+    <section class="section-padding" style="background-color: var(--dark-green-1);">
+        <div class="container">
+            <div class="section-header" style="margin-bottom: 40px;">
+                <h2>Taste the Tradition</h2>
+                <p>Select a category below to filter our dishes. Each dish is cooked fresh using heirloom spices and 100% Halal meats authorized by HFSAA.</p>
+            </div>
+            
+            <!-- Category Tabs -->
+            <div class="menu-tabs">
+                <button class="menu-tab-btn active" data-filter="all" id="tab-all">All Items</button>
+                <button class="menu-tab-btn" data-filter="appetizers" id="tab-appetizers">Appetizers</button>
+                <button class="menu-tab-btn" data-filter="soups" id="tab-soups">Soups & Salads</button>
+                <button class="menu-tab-btn" data-filter="entrees" id="tab-entrees">Traditional Entrées</button>
+                <button class="menu-tab-btn" data-filter="lamb" id="tab-lamb">Lamb Specialties</button>
+                <button class="menu-tab-btn" data-filter="chicken" id="tab-chicken">Chicken Dishes</button>
+                <button class="menu-tab-btn" data-filter="seafood" id="tab-seafood">Seafood & Veg</button>
+                <button class="menu-tab-btn" data-filter="bread" id="tab-bread">Fresh Bread</button>
+                <button class="menu-tab-btn" data-filter="desserts" id="tab-desserts">Desserts & Tea</button>
+            </div>
+            
+            <!-- Menu Grid -->
+            <div class="menu-items-grid" id="menu-items-container">
+                
+                <!-- Appetizers -->
+                <div class="menu-item" data-category="appetizers">
+                    <div class="menu-item-img">
+                        <img src="assets/dish_chicken_mandi.png" alt="Sufra Samosa">
+                    </div>
+                    <div class="menu-item-info">
+                        <div class="menu-item-header">
+                            <h3 class="menu-item-title">Sufra Samosa</h3>
+                            <span class="menu-item-tag">Appetizer</span>
+                        </div>
+                        <p class="menu-item-desc">Golden, crispy triangular pastry pockets filled with a savory blend of spiced potatoes, green peas, onions, and local aromatic herbs. Served with mint chutney.</p>
+                    </div>
+                </div>
+                
+                <div class="menu-item" data-category="appetizers">
+                    <div class="menu-item-img">
+                        <img src="assets/about_story.png" alt="Chili Cheese Kulcha">
+                    </div>
+                    <div class="menu-item-info">
+                        <div class="menu-item-header">
+                            <h3 class="menu-item-title">Chili Cheese Kulcha</h3>
+                            <span class="menu-item-tag">Appetizer</span>
+                        </div>
+                        <p class="menu-item-desc">Soft, tandoor-baked flatbread stuffed with molten cheddar cheese and finely chopped spicy green chilies. A savory, hot starter.</p>
+                    </div>
+                </div>
+
+                <div class="menu-item" data-category="appetizers">
+                    <div class="menu-item-img">
+                        <img src="assets/restaurant_interior.png" alt="Chaat Medley">
+                    </div>
+                    <div class="menu-item-info">
+                        <div class="menu-item-header">
+                            <h3 class="menu-item-title">Chaat Medley</h3>
+                            <span class="menu-item-tag">Appetizer</span>
+                        </div>
+                        <p class="menu-item-desc">A vibrant mix of sweet potato cubes, crispy chickpea batter, tangy mint-tamarind yogurt, chopped onions, and fresh cilantro. Sweet, spicy, and refreshing.</p>
+                    </div>
+                </div>
+
+                <!-- Soups & Salads -->
+                <div class="menu-item" data-category="soups">
+                    <div class="menu-item-img">
+                        <img src="assets/dish_lamb_fahsa.png" alt="Maraq Soup">
+                    </div>
+                    <div class="menu-item-info">
+                        <div class="menu-item-header">
+                            <h3 class="menu-item-title">Traditional Maraq</h3>
+                            <span class="menu-item-tag">Soup</span>
+                        </div>
+                        <p class="menu-item-desc">Clear lamb broth slow-simmered for hours with onions, cardamom, garlic, black pepper, and cumin. Garnished with fresh coriander and lime.</p>
+                    </div>
+                </div>
+
+                <div class="menu-item" data-category="soups">
+                    <div class="menu-item-img">
+                        <img src="assets/dish_lamb_hanith.png" alt="Sufra House Salad">
+                    </div>
+                    <div class="menu-item-info">
+                        <div class="menu-item-header">
+                            <h3 class="menu-item-title">Sufra House Salad</h3>
+                            <span class="menu-item-tag">Salad</span>
+                        </div>
+                        <p class="menu-item-desc">Crisp romaine lettuce, vine-ripened tomatoes, crunchy English cucumbers, and red onions, tossed in a zesty lemon-olive oil dressing topped with sumac.</p>
+                    </div>
+                </div>
+
+                <!-- Traditional Entrees -->
+                <div class="menu-item" data-category="entrees">
+                    <div class="menu-item-img">
+                        <img src="assets/dish_lamb_fahsa.png" alt="Lamb Fahsa">
+                    </div>
+                    <div class="menu-item-info">
+                        <div class="menu-item-header">
+                            <h3 class="menu-item-title">Signature Lamb Fahsa</h3>
+                            <span class="menu-item-tag">Traditional Entrée</span>
+                        </div>
+                        <p class="menu-item-desc">A sizzling shredded lamb stew slow-cooked in a traditional black stone pot (Hradah), topped with whipped green fenugreek froth (Hilbah) and served bubbling hot.</p>
+                    </div>
+                </div>
+
+                <div class="menu-item" data-category="entrees">
+                    <div class="menu-item-img">
+                        <img src="assets/restaurant_interior.png" alt="Chicken Saltah">
+                    </div>
+                    <div class="menu-item-info">
+                        <div class="menu-item-header">
+                            <h3 class="menu-item-title">Chicken Saltah</h3>
+                            <span class="menu-item-tag">Traditional Entrée</span>
+                        </div>
+                        <p class="menu-item-desc">Yemeni national clay-pot stew featuring seasoned shredded chicken, mixed garden vegetables, and rich broth, capped with whipped hilbah.</p>
+                    </div>
+                </div>
+
+                <!-- Lamb Specialties -->
+                <div class="menu-item" data-category="lamb">
+                    <div class="menu-item-img">
+                        <img src="assets/dish_lamb_hanith.png" alt="Lamb Hanith">
+                    </div>
+                    <div class="menu-item-info">
+                        <div class="menu-item-header">
+                            <h3 class="menu-item-title">Lamb Hanith</h3>
+                            <span class="menu-item-tag">Lamb Specialty</span>
+                        </div>
+                        <p class="menu-item-desc">Premium cut of young lamb seasoned with cardamon, cumin, and cloves, slow-roasted in specialized ovens for hours until meltingly tender, served on basmati rice.</p>
+                    </div>
+                </div>
+
+                <div class="menu-item" data-category="lamb">
+                    <div class="menu-item-img">
+                        <img src="assets/hero_bg.png" alt="Lamb Zurbian">
+                    </div>
+                    <div class="menu-item-info">
+                        <div class="menu-item-header">
+                            <h3 class="menu-item-title">Lamb Zurbian</h3>
+                            <span class="menu-item-tag">Lamb Specialty</span>
+                        </div>
+                        <p class="menu-item-desc">Fragrant rice dish cooked with slow-simmered tender lamb chunks, potatoes, saffron water, yogurt, and caramelized onions, infused with aromatic charcoal smoke.</p>
+                    </div>
+                </div>
+
+                <!-- Chicken Dishes -->
+                <div class="menu-item" data-category="chicken">
+                    <div class="menu-item-img">
+                        <img src="assets/dish_chicken_mandi.png" alt="Chicken Mandi">
+                    </div>
+                    <div class="menu-item-info">
+                        <div class="menu-item-header">
+                            <h3 class="menu-item-title">Chicken Mandi</h3>
+                            <span class="menu-item-tag">Chicken Dish</span>
+                        </div>
+                        <p class="menu-item-desc">Half chicken seasoned with secret spices and roasted to crispy perfection, served on a bed of smoked basmati rice with a side of spicy Sahawek salsa.</p>
+                    </div>
+                </div>
+
+                <div class="menu-item" data-category="chicken">
+                    <div class="menu-item-img">
+                        <img src="assets/dish_lamb_hanith.png" alt="Chicken Hanith">
+                    </div>
+                    <div class="menu-item-info">
+                        <div class="menu-item-header">
+                            <h3 class="menu-item-title">Chicken Hanith</h3>
+                            <span class="menu-item-tag">Chicken Dish</span>
+                        </div>
+                        <p class="menu-item-desc">Slow-oven roasted chicken infused with garlic, cumin, and black pepper, roasted until tender, served with long-grain yellow rice.</p>
+                    </div>
+                </div>
+
+                <!-- Seafood & Veg -->
+                <div class="menu-item" data-category="seafood">
+                    <div class="menu-item-img">
+                        <img src="assets/hero_bg.png" alt="Yemeni Baked Fish">
+                    </div>
+                    <div class="menu-item-info">
+                        <div class="menu-item-header">
+                            <h3 class="menu-item-title">Yemeni Baked Fish</h3>
+                            <span class="menu-item-tag">Seafood</span>
+                        </div>
+                        <p class="menu-item-desc">Premium fresh fish fillet marinated in a traditional tomato-garlic paste, red pepper, and cumin, baked in our clay oven to capture smoky wood flavors.</p>
+                    </div>
+                </div>
+
+                <div class="menu-item" data-category="seafood">
+                    <div class="menu-item-img">
+                        <img src="assets/dish_lamb_fahsa.png" alt="Vegetable Saltah">
+                    </div>
+                    <div class="menu-item-info">
+                        <div class="menu-item-header">
+                            <h3 class="menu-item-title">Vegetable Saltah</h3>
+                            <span class="menu-item-tag">Vegetarian</span>
+                        </div>
+                        <p class="menu-item-desc">A bubbling hot stone pot of mixed seasonal vegetables, okra, potatoes, and beans cooked in a seasoned broth, finished with whipped hilbah.</p>
+                    </div>
+                </div>
+
+                <div class="menu-item" data-category="seafood">
+                    <div class="menu-item-img">
+                        <img src="assets/about_story.png" alt="Foul Mudammas">
+                    </div>
+                    <div class="menu-item-info">
+                        <div class="menu-item-header">
+                            <h3 class="menu-item-title">Foul Mudammas</h3>
+                            <span class="menu-item-tag">Vegetarian</span>
+                        </div>
+                        <p class="menu-item-desc">Slow-cooked premium fava beans mashed with sautéed onions, tomatoes, garlic, cumin, and olive oil, served with warm fresh bread.</p>
+                    </div>
+                </div>
+
+                <!-- Fresh Bread -->
+                <div class="menu-item" data-category="bread">
+                    <div class="menu-item-img">
+                        <img src="assets/about_story.png" alt="Mulawah Bread">
+                    </div>
+                    <div class="menu-item-info">
+                        <div class="menu-item-header">
+                            <h3 class="menu-item-title">Mulawah Flatbread</h3>
+                            <span class="menu-item-tag">Fresh Bread</span>
+                        </div>
+                        <p class="menu-item-desc">Giant, flaky, multi-layered traditional flatbread stretched by hand and baked fresh to order in our hot tandoor oven, brushed with light ghee.</p>
+                    </div>
+                </div>
+
+                <div class="menu-item" data-category="bread">
+                    <div class="menu-item-img">
+                        <img src="assets/about_story.png" alt="Rashoush Bread">
+                    </div>
+                    <div class="menu-item-info">
+                        <div class="menu-item-header">
+                            <h3 class="menu-item-title">Rashoush Bread</h3>
+                            <span class="menu-item-tag">Fresh Bread</span>
+                        </div>
+                        <p class="menu-item-desc">Traditional Yemeni whole wheat flatbread baked on hot stones, brushed with ghee, and sprinkled with black sesame seeds (Habbat al-Barakah).</p>
+                    </div>
+                </div>
+
+                <!-- Desserts & Tea -->
+                <div class="menu-item" data-category="desserts">
+                    <div class="menu-item-img">
+                        <img src="assets/restaurant_interior.png" alt="Coconut Kheer">
+                    </div>
+                    <div class="menu-item-info">
+                        <div class="menu-item-header">
+                            <h3 class="menu-item-title">Coconut Kheer</h3>
+                            <span class="menu-item-tag">Dessert</span>
+                        </div>
+                        <p class="menu-item-desc">Creamy, slow-cooked rice pudding infused with cardamon, saffron, whole milk, and shredded coconut, garnished with crushed pistachios.</p>
+                    </div>
+                </div>
+
+                <div class="menu-item" data-category="desserts">
+                    <div class="menu-item-img">
+                        <img src="assets/dish_chicken_mandi.png" alt="Adeni Tea">
+                    </div>
+                    <div class="menu-item-info">
+                        <div class="menu-item-header">
+                            <h3 class="menu-item-title">Adeni Tea</h3>
+                            <span class="menu-item-tag">Beverage</span>
+                        </div>
+                        <p class="menu-item-desc">Traditional spiced milk tea brewed with black tea leaves, condensed milk, crushed cardamom pods, cloves, and ginger. Served hot.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center" style="margin-top: 60px;">
+                <p style="color: var(--text-muted); margin-bottom: 20px; font-weight: 300;">Ready to place your order for pickup or delivery?</p>
+                <a href="https://www.toasttab.com/sufra-411-east-roosevelt-road" target="_blank" class="btn btn-primary" id="menu-page-toast-order">Order Commission-Free on Toast</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col footer-about">
+                    <img src="assets/logo_gold.png" alt="Sufra Logo">
+                    <p style="margin-top: 15px;">Sufra brings authentic Yemeni fine dining to Lombard, Illinois. Experience the legendary flavor of slow-cooked meats, fresh stone-pot stews, and generous Middle Eastern hospitality.</p>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Explore</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html" id="foot-link-home">Home</a></li>
+                        <li><a href="about.html" id="foot-link-about">About Us</a></li>
+                        <li><a href="menu.html" id="foot-link-menu">Our Menu</a></li>
+                        <li><a href="catering.html" id="foot-link-catering">Catering</a></li>
+                        <li><a href="contact.html" id="foot-link-contact">Contact & Visit</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Opening Hours</h3>
+                    <ul class="footer-hours-list">
+                        <li><span>Wednesday</span> <span>3:00 PM - 10:00 PM</span></li>
+                        <li><span>Thursday</span> <span>3:00 PM - 10:00 PM</span></li>
+                        <li><span>Friday</span> <span>3:00 PM - 10:00 PM</span></li>
+                        <li><span>Saturday</span> <span>3:00 PM - 10:00 PM</span></li>
+                        <li><span>Sunday</span> <span>3:00 PM - 10:00 PM</span></li>
+                        <li><span>Mon - Tue</span> <span style="color: var(--accent-gold);">Closed</span></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col footer-contact">
+                    <h3>Contact Us</h3>
+                    <p><strong>Address:</strong><br>411 East Roosevelt Road,<br>Lombard, IL 60148</p>
+                    <p style="margin-top: 10px;"><strong>Email:</strong><br><a href="mailto:info@eatsufra.com" id="foot-email-link">info@eatsufra.com</a></p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 Sufra Restaurant. All Rights Reserved.</p>
+                <p>Authentic Yemeni Fine Dining</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Main JavaScript -->
+    <script src="js/main.js"></script>
+</body>
+</html>
