@@ -95,7 +95,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 5. Custom Success Modals & Form Validations
     const forms = {
-        reservation: document.getElementById('reservation-form'),
         catering: document.getElementById('catering-form'),
         contact: document.getElementById('contact-form')
     };
@@ -129,41 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Handle Reservation Form Submission
-    if (forms.reservation) {
-        forms.reservation.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            const name = document.getElementById('res-name').value;
-            const email = document.getElementById('res-email').value;
-            const guests = document.getElementById('res-guests').value;
-            const date = document.getElementById('res-date').value;
-            const time = document.getElementById('res-time').value;
-            
-            if (!name || !email || !guests || !date || !time) {
-                alert('Please fill out all fields.');
-                return;
-            }
-            
-            // Format dates/times nicely for display
-            const formattedDate = new Date(date).toLocaleDateString('en-US', {
-                weekday: 'long',
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
-            });
-            
-            showModal(
-                'Reservation Requested',
-                `Thank you, <strong>${name}</strong>!<br><br>
-                 We have received your request for a table of <strong>${guests}</strong> on <strong>${formattedDate}</strong> at <strong>${time}</strong>.<br><br>
-                 A confirmation email has been sent to <strong>${email}</strong>.<br><br>
-                 <em>Need immediate changes? You can also check availability or order pickup directly through our <a href="https://www.toasttab.com/sufra-411-east-roosevelt-road" target="_blank" style="color: #c5a880; text-decoration: underline;">Toast ordering portal</a>.</em>`
-            );
-            
-            forms.reservation.reset();
-        });
-    }
+
 
     // Handle Catering Form Submission
     if (forms.catering) {

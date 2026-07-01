@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sufra | Authentic Yemeni Fine Dining in Lombard, IL</title>
-    <meta name="description" content="Experience the premier Yemeni fine dining destination in Lombard, Illinois. Authentic traditions, premium ingredients, and exceptional hospitality meet at Sufra. Book your table today.">
+    <title>Sufra | Authentic Yemeni Restaurant in Lombard, IL (Chicago Area)</title>
+    <meta name="description" content="Sufra is the premier Halal Yemeni restaurant in Lombard, IL, serving authentic Mandi, Hanith, and sizzling Fahsa near Chicago. Enjoy our cozy dining room or order takeout daily.">
     <!-- Google Fonts & Font Awesome Icons -->
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -28,7 +28,7 @@
             </nav>
             
             <div class="nav-actions">
-                <a href="https://www.toasttab.com/sufra-411-east-roosevelt-road" target="_blank" class="btn btn-primary" style="padding: 10px 20px; font-size: 0.8rem;" id="nav-cta-order">Order Online</a>
+                <a href="https://order.toasttab.com/online/sufra-411-east-roosevelt-road" target="_blank" class="btn btn-primary" style="padding: 10px 20px; font-size: 0.8rem;" id="nav-cta-order">Order Online</a>
                 <button class="mobile-nav-toggle" aria-label="Toggle Navigation" id="mobile-toggle-btn">
                     <span></span>
                     <span></span>
@@ -48,7 +48,7 @@
                 <h1>Where Authentic Traditions Meet <span>Modern Hospitality</span></h1>
                 <p class="hero-desc">Sufra is Lombard's premier destination for exquisite Middle Eastern flavors, slow-cooked lamb specialties, and warm, unforgettable hospitality in an upscale environment.</p>
                 <div class="hero-btns">
-                    <a href="#book-table" class="btn btn-primary" id="hero-cta-book">Reserve a Table</a>
+                    <a href="https://order.toasttab.com/online/sufra-411-east-roosevelt-road" target="_blank" class="btn btn-primary" id="hero-cta-order">Order Online Now</a>
                     <a href="menu.html" class="btn btn-secondary" id="hero-cta-menu">Explore the Menu</a>
                 </div>
             </div>
@@ -199,72 +199,40 @@
         </div>
     </section>
 
-    <!-- Table Reservation Section -->
-    <section class="section-padding fade-in-section" id="book-table" style="background-color: var(--dark-charcoal); border-top: 1px solid var(--border-color);">
-        <div class="container" style="max-width: 800px;">
+    <!-- Restaurant Gallery Section -->
+    <section class="section-padding fade-in-section" id="restaurant-gallery" style="background-color: var(--dark-charcoal); border-top: 1px solid var(--border-color);">
+        <div class="container">
             <div class="section-header">
-                <h2>Book a Table</h2>
-                <p>Join us for an unforgettable dining experience. Fill out the reservation request below.</p>
+                <h2>Our Restaurant Gallery</h2>
+                <p>Take a visual tour of our cozy booths, elegant decor, and welcoming atmosphere in Lombard, IL.</p>
             </div>
             
-            <form id="reservation-form">
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="res-name">Your Name</label>
-                        <input type="text" id="res-name" required placeholder="John Doe">
-                    </div>
-                    <div class="form-group">
-                        <label for="res-email">Email Address</label>
-                        <input type="email" id="res-email" required placeholder="john@example.com">
-                    </div>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="assets/interior/sufra_int_5.jpg" alt="Cozy dining booths at Sufra Yemeni Restaurant in Lombard, IL near Chicago">
                 </div>
-                
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="res-guests">Number of Guests</label>
-                        <select id="res-guests" required>
-                            <option value="" disabled selected>Select guests</option>
-                            <option value="1">1 Guest</option>
-                            <option value="2">2 Guests</option>
-                            <option value="3">3 Guests</option>
-                            <option value="4">4 Guests</option>
-                            <option value="5">5 Guests</option>
-                            <option value="6">6 Guests</option>
-                            <option value="7">7 Guests</option>
-                            <option value="8+">8+ Guests (Group booking)</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="res-date">Preferred Date</label>
-                        <input type="date" id="res-date" required>
-                    </div>
+                <div class="gallery-item">
+                    <img src="assets/interior/sufra_int_6.jpg" alt="Elegant restaurant interior with warm hanging brass lanterns at Sufra">
                 </div>
-                
-                <div class="form-group">
-                    <label for="res-time">Preferred Time</label>
-                    <select id="res-time" required>
-                        <option value="" disabled selected>Select time slot</option>
-                        <option value="3:00 PM">3:00 PM</option>
-                        <option value="3:30 PM">3:30 PM</option>
-                        <option value="4:00 PM">4:00 PM</option>
-                        <option value="4:30 PM">4:30 PM</option>
-                        <option value="5:00 PM">5:00 PM</option>
-                        <option value="5:30 PM">5:30 PM</option>
-                        <option value="6:00 PM">6:00 PM</option>
-                        <option value="6:30 PM">6:30 PM</option>
-                        <option value="7:00 PM">7:00 PM</option>
-                        <option value="7:30 PM">7:30 PM</option>
-                        <option value="8:00 PM">8:00 PM</option>
-                        <option value="8:30 PM">8:30 PM</option>
-                        <option value="9:00 PM">9:00 PM</option>
-                        <option value="9:30 PM">9:30 PM</option>
-                    </select>
+                <div class="gallery-item">
+                    <img src="assets/interior/sufra_int_13.jpg" alt="Traditional Middle Eastern design details at Sufra Lombard">
                 </div>
-                
-                <div class="text-center" style="margin-top: 40px;">
-                    <button type="submit" class="btn btn-primary" id="res-submit-btn">Request Reservation</button>
+                <div class="gallery-item">
+                    <img src="assets/interior/sufra_int_21.jpg" alt="Welcoming seating layout and vintage wood door details at Sufra">
                 </div>
-            </form>
+                <div class="gallery-item">
+                    <img src="assets/interior/sufra_int_10.jpg" alt="Upscale dining room table setting at Sufra Authentic Yemeni Cuisine">
+                </div>
+                <div class="gallery-item">
+                    <img src="assets/interior/sufra_int_23.jpg" alt="Cozy corners and seating arrangements at Sufra Restaurant">
+                </div>
+                <div class="gallery-item">
+                    <img src="assets/interior/sufra_int_4.jpg" alt="Decorative elements and ambient lighting at Sufra Lombard IL">
+                </div>
+                <div class="gallery-item">
+                    <img src="assets/interior/sufra_int_8.jpg" alt="Warm hospitality environment and cozy seating at Sufra">
+                </div>
+            </div>
         </div>
     </section>
 
@@ -291,12 +259,9 @@
                 <div class="footer-col">
                     <h3>Opening Hours</h3>
                     <ul class="footer-hours-list">
-                        <li><span>Wednesday</span> <span>3:00 PM - 10:00 PM</span></li>
-                        <li><span>Thursday</span> <span>3:00 PM - 10:00 PM</span></li>
-                        <li><span>Friday</span> <span>3:00 PM - 10:00 PM</span></li>
-                        <li><span>Saturday</span> <span>3:00 PM - 10:00 PM</span></li>
-                        <li><span>Sunday</span> <span>3:00 PM - 10:00 PM</span></li>
-                        <li><span>Mon - Tue</span> <span style="color: var(--accent-gold);">Closed</span></li>
+                        <li><span>Friday - Saturday</span> <span>4:00 PM - 11:00 PM CST</span></li>
+                        <li><span>Sunday - Thursday</span> <span>4:00 PM - 10:00 PM CST</span></li>
+                        <li><span>Daily Operations</span> <span style="color: var(--accent-gold);">Open 7 Days</span></li>
                     </ul>
                 </div>
                 
