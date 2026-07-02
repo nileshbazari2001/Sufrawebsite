@@ -39,13 +39,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // 3. Scroll Reveal Animations (Intersection Observer)
-    const animElements = document.querySelectorAll('.fade-in-section');
+    const animElements = document.querySelectorAll('.fade-in-section, .scroll-reveal');
     
     if ('IntersectionObserver' in window) {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('is-visible');
+                    entry.target.classList.add('active');
                     observer.unobserve(entry.target); // Animates once
                 }
             });
@@ -189,5 +190,125 @@ document.addEventListener('DOMContentLoaded', () => {
             
             forms.contact.reset();
         });
+    }
+
+    // 6. Interactive Catering Estimator
+    const calcGuests = document.getElementById('calc-guests');
+    const calcGuestsVal = document.getElementById('calc-guests-val');
+    const calcDishes = document.querySelectorAll('.calc-dish');
+    const calcSummary = document.getElementById('calc-summary');
+    const calcTotalPrice = document.getElementById('calc-total-price');
+    const calcApplyBtn = document.getElementById('calc-apply-btn');
+
+    if (calcGuests && calcGuestsVal && calcSummary && calcTotalPrice) {
+        function updateEstimate() {
+            const guests = parseInt(calcGuests.value);
+            calcGuestsVal.textContent = `${guests} Guests`;
+
+            // Find selected dishes
+            const selectedDishes = [];
+            calcDishes.forEach(checkbox => {
+                if (checkbox.checked) {
+                    selectedDishes.push({
+                        name: checkbox.getAttribute('data-name'),
+                        price: parseInt(checkbox.value)
+                    });
+                }
+            });
+
+            if (selectedDishes.length === 0) {
+                calcSummary.innerHTML = '<p style="color: var(--accent-gold); font-size: 0.95rem; font-style: italic; margin-top: 10px;">Please select at least one dish above.</p>';
+                calcTotalPrice.textContent = '$0';
+                return;
+            }
+
+            // Estimate tray requirements (serves 10-12, average 11)
+            const totalTrays = Math.ceil(guests / 11);
+            
+            // Distribute trays evenly among selected dishes
+            const distributed = selectedDishes.map(dish => ({
+                ...dish,
+                trays: Math.floor(totalTrays / selectedDishes.length)
+            }));
+
+            // Distribute remainder
+            let remainder = totalTrays % selectedDishes.length;
+            for (let i = 0; i < remainder; i++) {
+                distributed[i].trays += 1;
+            }
+
+            // Calculate total price and build HTML summary
+            let totalPrice = 0;
+            let summaryHTML = '<ul style="list-style: none; display: flex; flex-direction: column; gap: 10px; margin-top: 10px; width: 100%;">';
+
+            distributed.forEach(dish => {
+                if (dish.trays > 0) {
+                    const dishCost = dish.trays * dish.price;
+                    totalPrice += dishCost;
+                    summaryHTML += `
+                        <li style="display: flex; justify-content: space-between; font-size: 0.95rem; width: 100%;">
+                            <span>${dish.trays}x ${dish.name} Tray${dish.trays > 1 ? 's' : ''}</span>
+                            <span style="color: var(--white); font-weight: 500;">$${dishCost}</span>
+                        </li>
+                    `;
+                }
+            });
+
+            summaryHTML += `
+                <li style="display: flex; justify-content: space-between; font-size: 0.95rem; border-top: 1px solid var(--border-color); padding-top: 10px; margin-top: 10px; font-weight: bold; color: var(--white); width: 100%;">
+                    <span>Total Trays Needed</span>
+                    <span>${totalTrays} Trays</span>
+                </li>
+            </ul>`;
+
+            calcSummary.innerHTML = summaryHTML;
+            calcTotalPrice.textContent = `$${totalPrice}`;
+
+            // Store summary details for the apply button
+            calcApplyBtn.setAttribute('data-estimate-text', 
+                distributed.filter(d => d.trays > 0).map(d => `${d.trays}x ${d.name}`).join(', ')
+            );
+            calcApplyBtn.setAttribute('data-estimate-cost', totalPrice);
+            calcApplyBtn.setAttribute('data-estimate-guests', guests);
+        }
+
+        // Add event listeners
+        calcGuests.addEventListener('input', updateEstimate);
+        calcDishes.forEach(checkbox => checkbox.addEventListener('change', updateEstimate));
+
+        // Initialize calculator
+        updateEstimate();
+
+        // Apply estimator to form
+        if (calcApplyBtn) {
+            calcApplyBtn.addEventListener('click', () => {
+                const guests = calcApplyBtn.getAttribute('data-estimate-guests');
+                const estimateText = calcApplyBtn.getAttribute('data-estimate-text');
+                const estimateCost = calcApplyBtn.getAttribute('data-estimate-cost');
+
+                const formGuests = document.getElementById('cat-guests');
+                const formNotes = document.getElementById('cat-notes');
+
+                if (formGuests) {
+                    formGuests.value = guests;
+                }
+
+                if (formNotes) {
+                    formNotes.value = `Estimated Tray Configuration: ${estimateText}. Estimated food cost: $${estimateCost}.`;
+                }
+
+                // Scroll to quote form smoothly
+                const quoteFormSection = document.getElementById('quote-form');
+                if (quoteFormSection) {
+                    quoteFormSection.scrollIntoView({ behavior: 'smooth' });
+                }
+
+                // Highlight the form inputs
+                if (formGuests) {
+                    formGuests.style.borderColor = 'var(--accent-gold)';
+                    setTimeout(() => formGuests.style.borderColor = 'var(--border-color)', 2000);
+                }
+            });
+        }
     }
 });
