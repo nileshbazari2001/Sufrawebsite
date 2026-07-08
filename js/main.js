@@ -131,6 +131,55 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+        // 5. Web3Forms Keys Configuration (Batch 1.5.1 - Triple Key parallel delivery)
+    // Replace placeholders with your Web3Forms access keys once generated.
+    const web3formsKeys = {
+        email1: '086f97f4-6e1d-4839-b4db-ad6e09616855',       // for info@eatsufra.com
+        email2: 'bf08b95d-8a64-4362-8000-1196f77c618d',  // for vikram.singh@kamabistro.com
+        email3: 'bcf9f1cf-dbf8-4279-9eb1-9c0231ed1fa8'   // for nilesh.bazari@kamabistro.com
+    };
+
+    // Helper function to submit form data to Web3Forms (supports multiple parallel keys)
+    function submitToWeb3Forms(formElement, additionalData = {}) {
+        const promises = [];
+        
+        const keysToSubmit = [
+            web3formsKeys.email1,
+            web3formsKeys.email2,
+            web3formsKeys.email3
+        ];
+
+        keysToSubmit.forEach(key => {
+            if (key && key.trim() !== '') {
+                const formData = new FormData(formElement);
+                formData.append('access_key', key);
+                for (let [k, val] of Object.entries(additionalData)) {
+                    formData.append(k, val);
+                }
+                promises.push(
+                    fetch('https://api.web3forms.com/submit', {
+                        method: 'POST',
+                        body: formData
+                    }).then(res => res.json())
+                );
+            }
+        });
+        
+        // If no keys are configured, fallback simulating success
+        if (promises.length === 0) {
+            console.warn('Web3Forms keys are not configured yet. Simulating success in local workspace.');
+            return Promise.resolve({ success: true });
+        }
+        
+        return Promise.all(promises).then(results => {
+            const allSuccess = results.every(res => res.success);
+            return { success: allSuccess };
+        }).catch(err => {
+            console.error('Error submitting form to Web3Forms:', err);
+            return { success: false };
+        });
+    }
+
     // Handle Catering Form Submission
     if (forms.catering) {
         forms.catering.addEventListener('submit', (e) => {
@@ -142,11 +191,16 @@ document.addEventListener('DOMContentLoaded', () => {
             const eventType = document.getElementById('cat-event').value;
             const guests = document.getElementById('cat-guests').value;
             const date = document.getElementById('cat-date').value;
-            const notes = document.getElementById('cat-notes').value || 'None';
             
             if (!name || !email || !phone || !eventType || !guests || !date) {
                 alert('Please fill out all required fields.');
                 return;
+            }
+            
+            const submitBtn = document.getElementById('cat-submit-btn') || document.querySelector('#catering-form button[type="submit"]');
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Sending...';
             }
             
             const formattedDate = new Date(date).toLocaleDateString('en-US', {
@@ -155,14 +209,28 @@ document.addEventListener('DOMContentLoaded', () => {
                 day: 'numeric'
             });
             
-            showModal(
-                'Catering Quote Requested',
-                `Thank you for choosing Sufra Catering, <strong>${name}</strong>!<br><br>
-                 We are excited to assist with your <strong>${eventType}</strong> for <strong>${guests} guests</strong> on <strong>${formattedDate}</strong>.<br><br>
-                 A customized proposal has been sent to <strong>${email}</strong>, and our catering team will follow up via phone at <strong>${phone}</strong> within 24 business hours.`
-            );
-            
-            forms.catering.reset();
+            // Submit to Web3Forms
+            submitToWeb3Forms(forms.catering, {
+                subject: `Sufra Catering lead (Website): ${eventType}`,
+                from_name: 'Sufra Catering Leads'
+            }).then(result => {
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Request Catering Quote';
+                }
+                
+                if (result.success) {
+                    showModal(
+                        'Catering Quote Requested',
+                        `Thank you for choosing Sufra Catering, <strong>${name}</strong>!<br><br>
+                         We are excited to assist with your <strong>${eventType}</strong> for <strong>${guests}</strong> on <strong>${formattedDate}</strong>.<br><br>
+                         A customized proposal has been sent to <strong>${email}</strong>, and our catering team will follow up via phone at <strong>${phone}</strong> within 24 business hours.`
+                    );
+                    forms.catering.reset();
+                } else {
+                    alert('Submission failed. Please check your internet connection and try again.');
+                }
+            });
         });
     }
 
@@ -181,134 +249,34 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
             
-            showModal(
-                'Message Sent',
-                `Thank you, <strong>${name}</strong>!<br><br>
-                 Your message regarding <strong>"${subject}"</strong> has been received by our hospitality team.<br><br>
-                 We will respond to <strong>${email}</strong> as soon as possible.`
-            );
+            const submitBtn = document.getElementById('contact-submit-btn') || document.querySelector('#contact-form button[type="submit"]');
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Sending...';
+            }
             
-            forms.contact.reset();
+            // Submit to Web3Forms
+            submitToWeb3Forms(forms.contact, {
+                subject: `Sufra Website Contact Us : ${subject}`,
+                from_name: 'Sufra Contact Messages'
+            }).then(result => {
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Send Message';
+                }
+                
+                if (result.success) {
+                    showModal(
+                        'Message Sent',
+                        `Thank you, <strong>${name}</strong>!<br><br>
+                         Your message regarding <strong>"${subject}"</strong> has been received by our hospitality team.<br><br>
+                         We will respond to <strong>${email}</strong> as soon as possible.`
+                    );
+                    forms.contact.reset();
+                } else {
+                    alert('Submission failed. Please check your internet connection and try again.');
+                }
+            });
         });
-    }
-
-    // 6. Interactive Catering Estimator
-    const calcGuests = document.getElementById('calc-guests');
-    const calcGuestsVal = document.getElementById('calc-guests-val');
-    const calcDishes = document.querySelectorAll('.calc-dish');
-    const calcSummary = document.getElementById('calc-summary');
-    const calcTotalPrice = document.getElementById('calc-total-price');
-    const calcApplyBtn = document.getElementById('calc-apply-btn');
-
-    if (calcGuests && calcGuestsVal && calcSummary && calcTotalPrice) {
-        function updateEstimate() {
-            const guests = parseInt(calcGuests.value);
-            calcGuestsVal.textContent = `${guests} Guests`;
-
-            // Find selected dishes
-            const selectedDishes = [];
-            calcDishes.forEach(checkbox => {
-                if (checkbox.checked) {
-                    selectedDishes.push({
-                        name: checkbox.getAttribute('data-name'),
-                        price: parseInt(checkbox.value)
-                    });
-                }
-            });
-
-            if (selectedDishes.length === 0) {
-                calcSummary.innerHTML = '<p style="color: var(--accent-gold); font-size: 0.95rem; font-style: italic; margin-top: 10px;">Please select at least one dish above.</p>';
-                calcTotalPrice.textContent = '$0';
-                return;
-            }
-
-            // Estimate tray requirements (serves 10-12, average 11)
-            const totalTrays = Math.ceil(guests / 11);
-            
-            // Distribute trays evenly among selected dishes
-            const distributed = selectedDishes.map(dish => ({
-                ...dish,
-                trays: Math.floor(totalTrays / selectedDishes.length)
-            }));
-
-            // Distribute remainder
-            let remainder = totalTrays % selectedDishes.length;
-            for (let i = 0; i < remainder; i++) {
-                distributed[i].trays += 1;
-            }
-
-            // Calculate total price and build HTML summary
-            let totalPrice = 0;
-            let summaryHTML = '<ul style="list-style: none; display: flex; flex-direction: column; gap: 10px; margin-top: 10px; width: 100%;">';
-
-            distributed.forEach(dish => {
-                if (dish.trays > 0) {
-                    const dishCost = dish.trays * dish.price;
-                    totalPrice += dishCost;
-                    summaryHTML += `
-                        <li style="display: flex; justify-content: space-between; font-size: 0.95rem; width: 100%;">
-                            <span>${dish.trays}x ${dish.name} Tray${dish.trays > 1 ? 's' : ''}</span>
-                            <span style="color: var(--white); font-weight: 500;">$${dishCost}</span>
-                        </li>
-                    `;
-                }
-            });
-
-            summaryHTML += `
-                <li style="display: flex; justify-content: space-between; font-size: 0.95rem; border-top: 1px solid var(--border-color); padding-top: 10px; margin-top: 10px; font-weight: bold; color: var(--white); width: 100%;">
-                    <span>Total Trays Needed</span>
-                    <span>${totalTrays} Trays</span>
-                </li>
-            </ul>`;
-
-            calcSummary.innerHTML = summaryHTML;
-            calcTotalPrice.textContent = `$${totalPrice}`;
-
-            // Store summary details for the apply button
-            calcApplyBtn.setAttribute('data-estimate-text', 
-                distributed.filter(d => d.trays > 0).map(d => `${d.trays}x ${d.name}`).join(', ')
-            );
-            calcApplyBtn.setAttribute('data-estimate-cost', totalPrice);
-            calcApplyBtn.setAttribute('data-estimate-guests', guests);
-        }
-
-        // Add event listeners
-        calcGuests.addEventListener('input', updateEstimate);
-        calcDishes.forEach(checkbox => checkbox.addEventListener('change', updateEstimate));
-
-        // Initialize calculator
-        updateEstimate();
-
-        // Apply estimator to form
-        if (calcApplyBtn) {
-            calcApplyBtn.addEventListener('click', () => {
-                const guests = calcApplyBtn.getAttribute('data-estimate-guests');
-                const estimateText = calcApplyBtn.getAttribute('data-estimate-text');
-                const estimateCost = calcApplyBtn.getAttribute('data-estimate-cost');
-
-                const formGuests = document.getElementById('cat-guests');
-                const formNotes = document.getElementById('cat-notes');
-
-                if (formGuests) {
-                    formGuests.value = guests;
-                }
-
-                if (formNotes) {
-                    formNotes.value = `Estimated Tray Configuration: ${estimateText}. Estimated food cost: $${estimateCost}.`;
-                }
-
-                // Scroll to quote form smoothly
-                const quoteFormSection = document.getElementById('quote-form');
-                if (quoteFormSection) {
-                    quoteFormSection.scrollIntoView({ behavior: 'smooth' });
-                }
-
-                // Highlight the form inputs
-                if (formGuests) {
-                    formGuests.style.borderColor = 'var(--accent-gold)';
-                    setTimeout(() => formGuests.style.borderColor = 'var(--border-color)', 2000);
-                }
-            });
-        }
     }
 });

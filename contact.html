@@ -118,15 +118,15 @@
                     <form id="contact-form">
                         <div class="form-group">
                             <label for="con-name">Full Name</label>
-                            <input type="text" id="con-name" required placeholder="John Doe">
+                            <input type="text" id="con-name" name="name" required placeholder="John Doe">
                         </div>
                         <div class="form-group">
                             <label for="con-email">Email Address</label>
-                            <input type="email" id="con-email" required placeholder="john@example.com">
+                            <input type="email" id="con-email" name="email" required placeholder="john@example.com">
                         </div>
                         <div class="form-group">
                             <label for="con-subject">Subject</label>
-                            <select id="con-subject" required>
+                            <select id="con-subject" name="Inquiry Subject" required>
                                 <option value="" disabled selected>Select subject</option>
                                 <option value="General Inquiry">General Dining Inquiry</option>
                                 <option value="Group Dining Inquiry">Group Dining Inquiry</option>
@@ -137,7 +137,7 @@
                         </div>
                         <div class="form-group">
                             <label for="con-message">Your Message</label>
-                            <textarea id="con-message" required placeholder="Write your message here..."></textarea>
+                            <textarea id="con-message" name="message" required placeholder="Write your message here..."></textarea>
                         </div>
                         
                         <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 20px;" id="contact-submit-btn">Send Message</button>
